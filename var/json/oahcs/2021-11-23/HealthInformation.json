@@ -1,0 +1,19 @@
+{
+	"date": "2021-11-23",
+	"time": "11:24:21.477",
+	"name": "Windows 10",
+	"disk": [
+		{
+			"name": "Windows (C:)",
+			"type": "Lokaler Datenträger",
+			"free_space": "165,62 GB (70%)"
+		}
+	],
+	"cpu": {
+		"system": "10,8%",
+		"process": "0,0%"
+	},
+	"ram": {
+		"used_memory": "7,87 GB (50%)"
+	}
+}

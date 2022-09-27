@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false">
+
+	<!-- PROPERTIES -->
+	<property name="LOG_DIR" value="var/log/oahcs" />
+	<property name="LOG_FILE" value="HealthInformation" />
+	
+	<!-- ROLLING FILE -->
+	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOG_DIR}/${LOG_FILE}.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- <file>${LOG_DIR}/${LOG_FILE}.log</file> -->
+			<!-- daily rollover -->
+			<fileNamePattern>${LOG_DIR}/%d{yyyy-MM-dd}/${LOG_FILE}.gz</fileNamePattern>
+			<!-- keep 30 days' worth of history capped at 3GB total size -->
+			<maxHistory>30</maxHistory>
+			<totalSizeCap>3GB</totalSizeCap>
+		</rollingPolicy>
+		<encoder>
+			<pattern>[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %logger{0} - %msg%n</pattern>
+		</encoder>
+	</appender>
+	
+	<!-- CONSOLE -->
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<!-- encoders are assigned the type ch.qos.logback.classic.encoder.PatternLayoutEncoder 
+			by default -->
+		<encoder>
+			<pattern>[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %logger{0} - %msg%n</pattern>
+		</encoder>
+	</appender>
+	
+	<!-- LOGGERS -->
+	<logger name="com.tdvc.HealthInformation" level="all" additivity="true">
+		<appender-ref ref="FILE" level="all" />
+	</logger>
+	<root level="all" >
+		<appender-ref ref="STDOUT" />
+	</root>
+
+</configuration>
